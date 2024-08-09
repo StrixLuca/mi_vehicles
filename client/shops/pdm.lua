@@ -82,10 +82,6 @@ local ped = { obj = nil, spawned = false}
 local model, crd = lib.requestModel('a_m_y_business_02'), Shop.PDM.ped
 local scn = 'WORLD_HUMAN_DRINKING_FACILITY'
 
-local mch = { obj = nil, spawned = false}
-local mchmodel, mchcrd = lib.requestModel('s_m_y_xmech_01'), Shop.PDM.mech
-local mchscn = 'WORLD_HUMAN_DRINKING_FACILITY'
-
 -- initial context for shop_pdm
 lib.registerContext({
     id = 'shop_pdm',
@@ -98,11 +94,9 @@ AddEventHandler('mi_veh:c:load:pdm', function()
     --lib.showContext('shop_pdm')
     LoadBlip(Shop.PDM.blip)
     LoadPed(ped.obj, model, crd, scn, pedops)
-    LoadPed(mch.obj, mchmodel, mchcrd, mchscn, mchops)
 end)
 
 -- test commands
 RegisterCommand('pdm', function()
-    --TriggerServerEvent('mi_veh:s:load:pdm')
-    --TriggerServerEvent('mi_veh:s:load:pdm')
+    lib.showContext('shop_pdm')
 end, false)

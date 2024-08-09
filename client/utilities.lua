@@ -1,7 +1,10 @@
--- words
-PlayerTeleport = function(ped, x, y, z, h)
+-- teleport function
+Teleport = function(ped, x, y, z, w)
+    DoScreenFadeOut(100)
+    Citizen.Wait(1000)
     SetEntityCoords(ped, x, y, z-1, false, false, false, false)
-    SetEntityHeading(ped, h)
+    SetEntityHeading(ped, w)
+    DoScreenFadeIn(750)
 end
 
 -- words
