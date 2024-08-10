@@ -10,7 +10,7 @@ LoadMenu = function(data, shop)
             image = value.image,
             onSelect = function()
                 if Debug then
-                    print('Make: '..value.make..', Model: '..value.model)
+                    lib.print.info('Make: '..value.make..', Model: '..value.model)
                 end LoadVehicle_View(key, shop)
             end,
         }
@@ -55,7 +55,7 @@ end
 
 -- loads vehicle for physical viewing
 LoadVehicle_View = function(data, shop)
-    if Debug then print('Model xfrd: '..data) end
+    if Debug then lib.print.info('Model xfrd: '..data) end
 
     -- notify player of spawn location
     local txt1 = {
@@ -67,11 +67,11 @@ LoadVehicle_View = function(data, shop)
     local vehicle = lib.callback.await('mi_veh:s:create:vehicle', false, source, data, shop)
     SetVehicleOnGroundProperly(vehicle)
     SetVehicleEngineOn(vehicle, false, true, true)
-    if Debug then print('Spawn: '..shop.spawn..'| Head: '..shop.head) end
+    if Debug then lib.print.info('Spawn: '..shop.spawn..'| Head: '..shop.head) end
 
     -- tansport player to mechanic / vehicle
     local tpm = shop.ended
-    Citizen.Wait(200)
+    Wait(200)
     Teleport(cache.ped, tpm.x, tpm.y, tpm.z, tpm.w)
 
     -- open mechanic menu
@@ -82,7 +82,7 @@ end
 
 SetVehicleProperties = function(vehicle, properties)
     if vehicle == nil then
-        if Debug then print('no vehicle found') end
+        if Debug then lib.print.error('no vehicle found') end
     else
         lib.setVehicleProperties(vehicle, properties)
     end
@@ -116,12 +116,12 @@ SetVehicle_Details = function(vehicle)
             }
         },
       }, options)
-    print(json.encode(input), input[1], input[2])
+      lib.print.info(json.encode(input), input[1], input[2])
     --set properties for vehicle
-    print('Vehicle: '..vehicle)
+    lib.print.info('Vehicle: '..vehicle)
     local props = { color1 = input[1], color2 = input[1], plate = input[2] }
     local netId = NetworkGetEntityFromNetworkId(vehicle)
-    print(netId)
+    lib.print.info(netId)
     lib.setVehicleProperties(vehicle, { color1 = input[1] })
     lib.setVehicleProperties(vehicle, { color2 = input[1] })
 end
@@ -153,5 +153,5 @@ RegisterCommand('testinp', function()
             }
         },
       }, options)
-      print(json.encode(input), input[1], input[2])
+      lib.print.info(json.encode(input), input[1], input[2])
 end, false)

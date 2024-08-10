@@ -4,26 +4,26 @@ local Inventory = exports.ox_inventory
 
 -- get net id function
 local getNetId = function(ent)
-    Citizen.Wait(100)
+    Wait(100)
     local vNetId = NetworkGetEntityFromNetworkId(ent)
-    if Debug then print(vNetId) end
+    if Debug then lib.print.info(vNetId) end
     return vNetId
 end
 
 -- create initial vehicle
 lib.callback.register('mi_veh:s:create:vehicle', function(source, ent, model, shop)
     local player = Ox.GetPlayer(source)
-    print('player')
+    lib.print.info('player')
     ent = Ox.CreateVehicle({
         model = model, owner = player.charid,
     }, shop.spawn, shop.head)
-    print('creation')
+    lib.print.info('creation')
     -- load vehicle properties
     vehicleNet = getNetId(ent)
     if Debug then
-        print(player.stateId, ent) print(vehicleNet)
+        lib.print.info(player.stateId, ent) lib.print.info(vehicleNet)
     end
-    print('net')
+    lib.print.info('net')
 end)
 
 -- recreate vehicle from db and spawn with player inside
@@ -31,5 +31,5 @@ end)
 RegisterServerEvent('mi_veh:s:load:pdm')
 AddEventHandler('mi_veh:s:load:pdm', function()
     TriggerClientEvent('mi_veh:c:load:pdm', 1)
-    if Debug then print('loadpdm: s -> c') end
+    if Debug then lib.print.info('loadpdm: s -> c') end
 end)

@@ -23,7 +23,7 @@ AddEventHandler('onResourceStart', function(resourceName)
         if Shop.PDM.active then
             TriggerServerEvent('mi_veh:s:load:pdm')
         else
-            if Debug then print('PDM: Inactive') end
+            if Debug then lib.print.info('PDM: Inactive') end
         end
     end
 end)

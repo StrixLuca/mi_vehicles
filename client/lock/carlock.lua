@@ -25,11 +25,10 @@ end
 
 SetVehicleLocks = function(object)
     local vehicle
-    local player = cache.ped
-    local crds = GetEntityCoords(player)
+    local crds = GetEntityCoords(cache.ped)
     if not object then
-        if IsPedInAnyVehicle(player, false) then
-			object = GetVehiclePedIsIn(player, false)
+        if IsPedInAnyVehicle(cache.ped, false) then
+			object = GetVehiclePedIsIn(cache.ped, false)
 		else
 			object = lib.getClosestVehicle(crds, 8.0, true)
 		end
@@ -39,12 +38,12 @@ SetVehicleLocks = function(object)
             local data = { id = 'novehnear', tx = 'No Vehicle Nearby',
             dc = 'You are too far to utilize the locks'}
             DoNotify(data, Err)
-            print(data.tx)
+            lib.print.info(data.tx)
         end
     end
 end
 
 RegisterCommand('carlock',function ()
 	SetVehicleLocks()
-	Citizen.Wait(300)
+	Wait(300)
 end,false)

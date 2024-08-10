@@ -67,7 +67,7 @@ AddEventHandler('miv:c:cleanvehicle', function(loc, veh)
     -- set to cleaning location
     local gocd1, gocd2 = loc.ped.goloc, loc.ped.wash
     TaskGoToCoordAnyMeans(ped, gocd1.x, gocd1.y, gocd1.z, 1.0, 0, false, 2, 2.0)
-    Citizen.Wait(500)
+    Wait(500)
     TaskGoToCoordAnyMeans(ped, gocd2.x, gocd2.y, gocd2.z, 1.0, 0, false, 2, 2.0)
 end)
 

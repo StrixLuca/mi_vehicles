@@ -5,3 +5,7 @@
 list:
 - menu with zones on vehicle to target different properties
 (i.e. front zone - bumper, engine, grill, hood)
+
+
+## Discord
+(https://discord.gg/EtgZsVBtYB)
